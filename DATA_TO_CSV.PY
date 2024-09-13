@@ -50,7 +50,7 @@ class ApiDataExporter:
                 page += 1  # Move to the next page.
                 
                 # If we've collected 3000 or more items, stop collecting more.
-                if len(all_data) >= 100:
+                if len(all_data) >= 150:
                     break
             else:
                 # If there's no data or an error, stop the process.
