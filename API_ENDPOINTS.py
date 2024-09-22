@@ -32,7 +32,7 @@ endpoints = [
         #'elections/summary/',       #Skipped
                                                                         #'reports/{entity_type}/',
         #'totals/by_entity/',        #Skipped
-        'totals/inaugural_committees/by_contributor/',#45825_rows
+        #######'totals/inaugural_committees/by_contributor/',#45825_rows
                                                                         #'totals/{by_entity_type}',
         #search
         #'names/candidates/',        #Skipped
@@ -40,7 +40,7 @@ endpoints = [
         #filings
                                                                         #'candidate/{candidate_id}/filings/',
                                                                         #'candidate/{committee_id}/filings/',
-        'filings/',#502999
+        #######'filings/',#502999
         #'operations-log/',#above 1.2 million records
         #receipts
         #'schedules/schedule_a/',    #Skipped
@@ -53,7 +53,7 @@ endpoints = [
         #'schedules/schedule_a/by_state/by_candidate/totals/', #Skipped
         #'schedules/schedule_a/by_state/totals/',
         #'schedules/schedule_a/by_zip/',
-        'schedules/schedule_a/efile/',
+        #######'schedules/schedule_a/efile/',
                                                                         #'schedules/schedule_a/{sub_id}/',
         #disbursements
         #'schedules/schedule_b/',

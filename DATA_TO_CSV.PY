@@ -48,10 +48,6 @@ class ApiDataExporter:
                 all_data.extend(fetched_data)  # Add this page's data to our list of all data.
                 print(f"Fetched {len(fetched_data)} records from page {page}. Total records: {len(all_data)}")
                 page += 1  # Move to the next page.
-                
-                # If we've collected 3000 or more items, stop collecting more.
-                if len(all_data) >= 100:
-                    break
             else:
                 # If there's no data or an error, stop the process.
                 print("No data or error in response.")
