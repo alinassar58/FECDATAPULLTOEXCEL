@@ -16,6 +16,12 @@ class ApiDataExporter:
         self.api_keys = api_keys  # Our list of keys to access the API.
         self.current_api_key_index = 0  # Start by using the first API key.
 
+    # This function rotates the API key when one is exhausted.
+    def rotate_api_key(self):
+        self.current_api_key_index += 1
+        if self.current_api_key_index >= len(self.api_keys):
+            self.current_api_key_index = 0  # Reset to the first API key if all keys are exhausted.
+
     # This function asks for one page of data from the API.
     def fetch_page(self, page):
         params = {'per_page': self.per_page, 'page': page, 'api_key': self.api_keys[self.current_api_key_index]}
@@ -26,6 +32,16 @@ class ApiDataExporter:
             response.raise_for_status()
             # Convert the response (usually in JSON) to a Python dictionary.
             return response.json()
+        except requests.exceptions.HTTPError as http_err:
+            # Handle 429 Too Many Requests error by rotating API key
+            if response.status_code == 429:
+                print(f"API key {self.api_keys[self.current_api_key_index]} exceeded request limit. Rotating key...")
+                self.rotate_api_key()
+                return self.fetch_page(page)  # Retry with the new API key.
+            else:
+                # If there's another type of error, we print it and return nothing (None).
+                print(f"HTTP error occurred: {http_err}")
+                return None
         except requests.RequestException as e:
             # If there's an error, we print it and return nothing (None).
             print(f"Request error: {e}")
